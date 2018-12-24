@@ -1,3 +1,3 @@
-# pytorch-flows
+# pytorch-flows-plus
 
-With some bug fixes and multiple enhancements.
+Add some bug fixes and multiple enhancements to [pytorch-flows](https://github.com/ikostrikov/pytorch-flows)
