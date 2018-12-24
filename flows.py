@@ -96,10 +96,12 @@ class Sigmoid(nn.Module):
     def forward(self, inputs, cond_inputs=None, mode='direct'):
         if mode == 'direct':
             s = torch.sigmoid
-            return s(inputs), torch.log(s(inputs) * (1 - s(inputs))).sum(-1, keepdim=True)
+            logdet = - inputs - 2. * F.softplus(-inputs)
+            return s(inputs), logdet.sum(-1, keepdim=True)          
         else:
-            return torch.log(inputs / (1 - inputs)), -torch.log(inputs - inputs ** 2).sum(-1, keepdim=True)
-
+            logdet = -torch.log(inputs) - torch.log(1. - inputs)
+            return torch.log(inputs) - torch.log(1 - inputs), logdet.sum(-1, keepdim=True)
+        
 
 class Logit(Sigmoid):
     def __init__(self):
