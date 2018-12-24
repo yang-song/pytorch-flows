@@ -107,9 +107,9 @@ class Logit(Sigmoid):
 
     def forward(self, inputs, cond_inputs=None, mode='direct'):
         if mode == 'direct':
-            return super(Logit, self).forward(inputs, 'inverse')
+            return super(Logit, self).forward(inputs, mode='inverse')
         else:
-            return super(Logit, self).forward(inputs, 'direct')
+            return super(Logit, self).forward(inputs, mode='direct')
 
 class BatchNormFlow(nn.Module):
     """ An implementation of a batch normalization layer from
